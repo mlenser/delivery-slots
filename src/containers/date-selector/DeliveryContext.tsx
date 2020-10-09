@@ -55,8 +55,8 @@ export const DeliveryContextProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     const dataObject = {
-      homeDelivery,
       formattedTime,
+      homeDelivery,
       selectedDate,
       selectedTime,
     };

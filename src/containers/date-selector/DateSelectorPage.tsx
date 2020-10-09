@@ -12,15 +12,13 @@ type Props = {
   title: string;
 };
 
-const DateSelectorPage: React.FC<Props> = ({ title }) => {
-  return (
-    <Article>
-      <H1>{title}</H1>
-      <DeliveryContextProvider>
-        <DateSelectorForm />
-      </DeliveryContextProvider>
-    </Article>
-  );
-};
+const DateSelectorPage: React.FC<Props> = ({ title }) => (
+  <Article>
+    <H1>{title}</H1>
+    <DeliveryContextProvider>
+      <DateSelectorForm />
+    </DeliveryContextProvider>
+  </Article>
+);
 
 export default DateSelectorPage;

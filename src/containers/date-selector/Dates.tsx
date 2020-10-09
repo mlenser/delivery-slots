@@ -41,9 +41,9 @@ const Dates: React.FC = () => {
           {datesData.sort(sortByDate).map((date) => (
             <FormControlLabel
               key={date}
-              value={date}
               control={<Radio />}
               label={date}
+              value={date}
             />
           ))}
         </RadioGroup>
