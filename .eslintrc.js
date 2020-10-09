@@ -85,6 +85,7 @@ module.exports = {
             'newlines-between': 'never',
           },
         ],
+        'import/prefer-default-export': 0,
         'jest/no-disabled-tests': 'warn',
         'jest/no-focused-tests': 'error',
         'jest/no-identical-title': 'error',

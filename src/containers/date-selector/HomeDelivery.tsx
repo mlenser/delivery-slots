@@ -6,7 +6,7 @@ import { useDeliveryContext } from './DeliveryContext';
 const HomeDelivery: React.FC = () => {
   const { homeDelivery, setHomeDelivery } = useDeliveryContext();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setHomeDelivery((event.target as HTMLInputElement).checked);
   };
 

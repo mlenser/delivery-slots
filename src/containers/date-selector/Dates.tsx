@@ -23,7 +23,7 @@ const Dates: React.FC = () => {
     })();
   }, []);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSelectedDate((event.target as HTMLInputElement).value);
   };
 

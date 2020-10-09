@@ -38,19 +38,18 @@ const Times: React.FC = () => {
   } = useDeliveryContext();
 
   useEffect(() => {
-    if (!selectedDate) {
-      return undefined;
+    if (selectedDate) {
+      (async () => {
+        const response = await fetch(
+          `https://api.mathem.io/mh-test-assignment/delivery/times/${selectedDate}`,
+        );
+        const data = await response.json();
+        setTimesData(data);
+      })();
     }
-    (async () => {
-      const response = await fetch(
-        `https://api.mathem.io/mh-test-assignment/delivery/times/${selectedDate}`,
-      );
-      const data = await response.json();
-      setTimesData(data);
-    })();
   }, [selectedDate]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSelectedTime((event.target as HTMLInputElement).value);
   };
 
@@ -59,7 +58,6 @@ const Times: React.FC = () => {
   }
 
   /* UX comments: it is better to disable the time instead of removing it as that can be very confusing for the user. I left the filter above if you'd like to see that code. It can be called with
-
   .filter((time) => filterForHomeDelivery({ homeDelivery, time }))
    */
   return (
