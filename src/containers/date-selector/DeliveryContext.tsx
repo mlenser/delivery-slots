@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { getDataFromLocalStorage } from '../../utils/getDataFromLocalStorage';
 
 export type TimeData = {
   deliveryDate: string;
@@ -22,16 +23,15 @@ export type DeliveryContextProviderType = {
 const DeliveryContext = createContext({} as DeliveryContextProviderType);
 
 export const DeliveryContextProvider: React.FC = ({ children }) => {
-  const lsData = localStorage.getItem('dateSelectorData') || '';
-  const parsedLsData = JSON.parse(lsData);
+  const lsData = getDataFromLocalStorage();
   const [homeDelivery, setHomeDelivery] = useState<boolean>(
-    parsedLsData?.homeDelivery || false,
+    lsData?.homeDelivery || false,
   );
   const [selectedDate, setSelectedDate] = useState<string>(
-    parsedLsData?.selectedDate || '',
+    lsData?.selectedDate || '',
   );
   const [selectedTime, setSelectedTime] = useState<string>(
-    parsedLsData?.selectedTime || '',
+    lsData?.selectedTime || '',
   );
   const [timesData, setTimesData] = useState<TimeData[]>([]);
 
