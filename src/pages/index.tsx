@@ -12,13 +12,10 @@ type Props = {
       };
     };
   };
-  location?: {
-    pathname: string;
-  };
 };
 
-const IndexPage: React.FC<Props> = ({ data, location }) => (
-  <Layout location={location}>
+const IndexPage: React.FC<Props> = ({ data }) => (
+  <Layout>
     <SEO title={data.site.siteMetadata.title} />
     <DateSelectorPage title={data.site.siteMetadata.title} />
   </Layout>
