@@ -6,7 +6,8 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import H2 from '../../components/Headings/H2';
 import { formatTime } from '../../utils/formatTime';
-import { useDeliveryContext, TimeData } from './DeliveryContext';
+import { TimeData } from '../../types/types';
+import { useDeliveryContext } from './DeliveryContext';
 
 const sortByStartTime = (
   a: { startTime: string },

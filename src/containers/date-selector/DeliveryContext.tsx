@@ -1,13 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getDataFromLocalStorage } from '../../utils/getDataFromLocalStorage';
-
-export type TimeData = {
-  deliveryDate: string;
-  deliveryTimeId: string;
-  inHomeAvailable: boolean;
-  startTime: string;
-  stopTime: string;
-};
+import { formatTime } from '../../utils/formatTime';
+import { TimeData } from '../../types/types';
 
 export type DeliveryContextProviderType = {
   homeDelivery: boolean;
