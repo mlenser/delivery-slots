@@ -31,7 +31,7 @@ export const DeliveryContextProvider: React.FC = ({ children }) => {
   const [timesData, setTimesData] = useState<TimeData[]>([]);
 
   useEffect(() => {
-    if (homeDelivery && selectedTime) {
+    if (homeDelivery && selectedTime && timesData?.length > 0) {
       const timeObject = getTimeObject({ selectedTime, timesData });
       if (!timeObject.inHomeAvailable) {
         setSelectedTime('');
