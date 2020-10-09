@@ -19,6 +19,9 @@ const DeliveryContext = createContext({} as DeliveryContextProviderType);
 
 export const DeliveryContextProvider: React.FC = ({ children }) => {
   const lsData = getDataFromLocalStorage();
+  const [formattedTime, setFormattedTime] = useState<string>(
+    lsData?.formattedTime || '',
+  );
   const [homeDelivery, setHomeDelivery] = useState<boolean>(
     lsData?.homeDelivery || false,
   );
@@ -40,8 +43,16 @@ export const DeliveryContextProvider: React.FC = ({ children }) => {
   }, [homeDelivery]);
 
   useEffect(() => {
-    const { startTime, stopTime } = getTimeObject({ selectedTime, timesData });
-    const formattedTime = formatTime(startTime, stopTime);
+    if (timesData?.length > 0) {
+      const { startTime, stopTime } = getTimeObject({
+        selectedTime,
+        timesData,
+      });
+      setFormattedTime(formatTime(startTime, stopTime));
+    }
+  }, [selectedTime]);
+
+  useEffect(() => {
     const dataObject = {
       homeDelivery,
       formattedTime,
@@ -49,7 +60,7 @@ export const DeliveryContextProvider: React.FC = ({ children }) => {
       selectedTime,
     };
     localStorage.setItem('dateSelectorData', JSON.stringify(dataObject));
-  }, [homeDelivery, selectedDate, selectedTime]);
+  }, [formattedTime, homeDelivery, selectedDate, selectedTime]);
 
   const state = {
     homeDelivery,
