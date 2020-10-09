@@ -32,9 +32,9 @@ const Times: React.FC = () => {
     homeDelivery,
     selectedDate,
     selectedTime,
-    timesData,
     setSelectedTime,
     setTimesData,
+    timesData,
   } = useDeliveryContext();
 
   useEffect(() => {
