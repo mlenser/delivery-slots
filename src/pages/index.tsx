@@ -1,10 +1,17 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Index from '../containers/IndexPage';
+import DateSelectorPage from '../containers/date-selector/DateSelectorPage';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 
 type Props = {
+  data: {
+    site: {
+      siteMetadata: {
+        title: string;
+      };
+    };
+  };
   location?: {
     pathname: string;
   };
@@ -13,10 +20,7 @@ type Props = {
 const IndexPage: React.FC<Props> = ({ data, location }) => (
   <Layout location={location}>
     <SEO title={data.site.siteMetadata.title} />
-    <Index
-      description={data.site.siteMetadata.description}
-      title={data.site.siteMetadata.title}
-    />
+    <DateSelectorPage title={data.site.siteMetadata.title} />
   </Layout>
 );
 
@@ -25,7 +29,6 @@ export const query = graphql`
     site: site {
       siteMetadata {
         title
-        description
       }
     }
   }
