@@ -63,7 +63,7 @@ const Times: React.FC = () => {
   return (
     <section>
       <H2>Times</H2>
-      <FormControl component="fieldset">
+      <FormControl component="fieldset" required>
         <FormLabel component="legend">Select a time</FormLabel>
         <RadioGroup
           aria-label="time"
@@ -76,7 +76,7 @@ const Times: React.FC = () => {
             .map(({ deliveryTimeId, inHomeAvailable, startTime, stopTime }) => (
               <FormControlLabel
                 key={deliveryTimeId}
-                control={<Radio />}
+                control={<Radio required />}
                 disabled={homeDelivery && !inHomeAvailable}
                 label={formatTime(startTime, stopTime)}
                 value={deliveryTimeId}

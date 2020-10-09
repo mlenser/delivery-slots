@@ -30,7 +30,7 @@ const Dates: React.FC = () => {
   return (
     <section>
       <H2>Dates</H2>
-      <FormControl component="fieldset">
+      <FormControl component="fieldset" required>
         <FormLabel component="legend">Select a date</FormLabel>
         <RadioGroup
           aria-label="date"
@@ -41,7 +41,7 @@ const Dates: React.FC = () => {
           {datesData.sort(sortByDate).map((date) => (
             <FormControlLabel
               key={date}
-              control={<Radio />}
+              control={<Radio required />}
               label={date}
               value={date}
             />
