@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 export type TimeData = {
   deliveryDate: string;
@@ -27,7 +27,16 @@ export const DeliveryContextProvider: React.FC = ({ children }) => {
   const [timesData, setTimesData] = useState<TimeData[]>([]);
   const [homeDelivery, setHomeDelivery] = useState<boolean>(false);
 
-  console.log('selectedTime', selectedTime);
+  useEffect(() => {
+    if (homeDelivery && selectedTime) {
+      const timeObject = timesData.find(
+        (time) => time.deliveryTimeId === selectedTime,
+      );
+      if (timeObject && !timeObject.inHomeAvailable) {
+        setSelectedTime('');
+      }
+    }
+  }, [homeDelivery]);
 
   const state = {
     homeDelivery,
