@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getDataFromLocalStorage } from '../../utils/getDataFromLocalStorage';
 import { formatTime } from '../../utils/formatTime';
+import { getTimeObject } from '../../utils/getTimeObject';
 import { TimeData } from '../../types/types';
 
 export type DeliveryContextProviderType = {
@@ -31,18 +32,19 @@ export const DeliveryContextProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     if (homeDelivery && selectedTime) {
-      const timeObject = timesData.find(
-        (time) => time.deliveryTimeId === selectedTime,
-      );
-      if (timeObject && !timeObject.inHomeAvailable) {
+      const timeObject = getTimeObject({ selectedTime, timesData });
+      if (!timeObject.inHomeAvailable) {
         setSelectedTime('');
       }
     }
   }, [homeDelivery]);
 
   useEffect(() => {
+    const { startTime, stopTime } = getTimeObject({ selectedTime, timesData });
+    const formattedTime = formatTime(startTime, stopTime);
     const dataObject = {
       homeDelivery,
+      formattedTime,
       selectedDate,
       selectedTime,
     };
