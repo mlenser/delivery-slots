@@ -42,6 +42,7 @@ export const DeliveryContextProvider: React.FC = ({ children }) => {
     }
   }, [homeDelivery]);
 
+  // formatted time could be done with a global context, but that really depends on how the app will expand in the future
   useEffect(() => {
     if (timesData?.length > 0) {
       const { startTime, stopTime } = getTimeObject({
