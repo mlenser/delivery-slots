@@ -1,28 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import H2 from '../../components/Headings/H2';
-import { useDeliveryContext } from './DeliveryContext';
+import { useDeliveryContext, TimeData } from './DeliveryContext';
 
 const sortByStartTime = (
   a: { startTime: string },
   b: { startTime: string },
 ): number => a.startTime.localeCompare(b.startTime);
 
-type TimeData = {
-  deliveryDate: string;
-  deliveryTimeId: string;
-  inHomeAvailable: boolean;
-  startTime: string;
-  stopTime: string;
+const filterForHomeDelivery = ({
+  homeDelivery,
+  time,
+}: {
+  homeDelivery: boolean;
+  time: TimeData;
+}): boolean => {
+  if (homeDelivery) {
+    return time.inHomeAvailable;
+  }
+  return true;
 };
 
 const Times: React.FC = () => {
-  const [timesData, setTimesData] = useState<TimeData[]>([]);
-  const { selectedDate, selectedTime, setSelectedTime } = useDeliveryContext();
+  const {
+    homeDelivery,
+    selectedDate,
+    selectedTime,
+    timesData,
+    setSelectedTime,
+    setTimesData,
+  } = useDeliveryContext();
 
   useEffect(() => {
     if (!selectedDate) {
@@ -45,6 +56,10 @@ const Times: React.FC = () => {
     return null;
   }
 
+  /* UX comments: it is better to disable the time instead of removing it as that can be very confusing for the user. I left the filter above if you'd like to see that code. It can be called with
+
+  .filter((time) => filterForHomeDelivery({ homeDelivery, time }))
+   */
   return (
     <section>
       <H2>Times</H2>
@@ -58,12 +73,13 @@ const Times: React.FC = () => {
         >
           {timesData
             .sort(sortByStartTime)
-            .map(({ deliveryTimeId, startTime, stopTime }) => (
+            .map(({ deliveryTimeId, inHomeAvailable, startTime, stopTime }) => (
               <FormControlLabel
                 key={deliveryTimeId}
-                value={deliveryTimeId}
                 control={<Radio />}
+                disabled={homeDelivery && !inHomeAvailable}
                 label={`${startTime} – ${stopTime}`}
+                value={deliveryTimeId}
               />
             ))}
         </RadioGroup>
