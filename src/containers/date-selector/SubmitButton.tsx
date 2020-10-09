@@ -12,6 +12,7 @@ const SubmitButton: React.FC = () => {
         className={homeDelivery ? '' : 'disabled'}
         color="primary"
         disabled={!homeDelivery}
+        type="submit"
         variant="contained"
       >
         Submit
