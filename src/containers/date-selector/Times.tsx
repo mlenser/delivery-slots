@@ -5,6 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import H2 from '../../components/Headings/H2';
+import { formatTime } from '../../utils/formatTime';
 import { useDeliveryContext, TimeData } from './DeliveryContext';
 
 const sortByStartTime = (
@@ -78,7 +79,7 @@ const Times: React.FC = () => {
                 key={deliveryTimeId}
                 control={<Radio />}
                 disabled={homeDelivery && !inHomeAvailable}
-                label={`${startTime} – ${stopTime}`}
+                label={formatTime(startTime, stopTime)}
                 value={deliveryTimeId}
               />
             ))}
