@@ -1,10 +1,17 @@
 import React from 'react';
 import H2 from '../components/Headings/H2';
 import Link from '../components/Link';
-import { getDataFromLocalStorage } from '../utils/getDataFromLocalStorage';
+import {
+  DateSelectorData,
+  LocalStorageKeys,
+  useLocalStorage,
+} from '../hooks/useLocalStorage';
 
 const ConfirmationPage: React.FC = () => {
-  const lsData = getDataFromLocalStorage();
+  const { getItem } = useLocalStorage();
+  const dateSelectorData = getItem(
+    LocalStorageKeys.DATE_SELECTOR_DATA,
+  ) as DateSelectorData;
 
   return (
     <>
@@ -14,8 +21,9 @@ const ConfirmationPage: React.FC = () => {
 
       <H2>Delivery details</H2>
       <p>
-        Delivery scheduled for {lsData.selectedDate} at {lsData.formattedTime}
-        {lsData.homeDelivery ? ' with home delivery' : ''}.
+        Delivery scheduled for {dateSelectorData.selectedDate} at{' '}
+        {dateSelectorData.formattedTime}
+        {dateSelectorData.homeDelivery ? ' with home delivery' : ''}.
       </p>
     </>
   );

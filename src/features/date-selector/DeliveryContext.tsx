@@ -1,5 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { getDataFromLocalStorage } from '../../utils/getDataFromLocalStorage';
+import {
+  DateSelectorData,
+  LocalStorageKeys,
+  useLocalStorage,
+} from '../../hooks/useLocalStorage';
 import { formatTime } from '../../utils/formatTime';
 import { getTimeObject } from '../../utils/getTimeObject';
 import { TimeData } from '../../types/types';
@@ -18,18 +22,21 @@ export type DeliveryContextProviderType = {
 const DeliveryContext = createContext({} as DeliveryContextProviderType);
 
 export const DeliveryContextProvider: React.FC = ({ children }) => {
-  const lsData = getDataFromLocalStorage();
+  const { getItem, setItem } = useLocalStorage();
+  const dateSelectorData = getItem(
+    LocalStorageKeys.DATE_SELECTOR_DATA,
+  ) as DateSelectorData;
   const [formattedTime, setFormattedTime] = useState<string>(
-    lsData?.formattedTime || '',
+    dateSelectorData?.formattedTime || '',
   );
   const [homeDelivery, setHomeDelivery] = useState<boolean>(
-    lsData?.homeDelivery || false,
+    dateSelectorData?.homeDelivery || false,
   );
   const [selectedDate, setSelectedDate] = useState<string>(
-    lsData?.selectedDate || '',
+    dateSelectorData?.selectedDate || '',
   );
   const [selectedTime, setSelectedTime] = useState<string>(
-    lsData?.selectedTime || '',
+    dateSelectorData?.selectedTime || '',
   );
   const [timesData, setTimesData] = useState<TimeData[]>([]);
 
@@ -60,7 +67,7 @@ export const DeliveryContextProvider: React.FC = ({ children }) => {
       selectedDate,
       selectedTime,
     };
-    localStorage.setItem('dateSelectorData', JSON.stringify(dataObject));
+    setItem(LocalStorageKeys.DATE_SELECTOR_DATA, dataObject);
   }, [formattedTime, homeDelivery, selectedDate, selectedTime]);
 
   const state = {
