@@ -4,10 +4,10 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import { TIMES_API } from '../../constants/constants';
 import H2 from '../../components/Headings/H2';
-import { formatTime } from '../../utils/formatTime';
 import { TimeData } from '../../types/types';
+import { formatTime } from '../../utils/formatTime';
+import { getDeliveryTimes } from '../../utils/api/matHemApi';
 import { useDeliveryContext } from './DeliveryContext';
 
 const sortByStartTime = (
@@ -41,8 +41,7 @@ const Times: React.FC = () => {
   useEffect(() => {
     if (selectedDate) {
       (async () => {
-        const response = await fetch(`${TIMES_API}/${selectedDate}`);
-        const data = await response.json();
+        const data = await getDeliveryTimes(selectedDate);
         setTimesData(data);
       })();
     }

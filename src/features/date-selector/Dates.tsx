@@ -4,7 +4,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import { DATES_API } from '../../constants/constants';
+import { getDeliveryDates } from '../../utils/api/matHemApi';
 import H2 from '../../components/Headings/H2';
 import { useDeliveryContext } from './DeliveryContext';
 
@@ -16,8 +16,7 @@ const Dates: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(DATES_API);
-      const data = await response.json();
+      const data = await getDeliveryDates();
       setDatesData(data);
     })();
   }, []);
