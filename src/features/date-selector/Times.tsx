@@ -5,28 +5,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import H2 from '../../components/Headings/H2';
-import { TimeData } from '../../types/types';
 import { formatTime } from '../../utils/formatTime';
 import { getDeliveryTimes } from '../../utils/api/matHemApi';
+import { sortByStartTime } from '../../utils/sortByStartTime';
 import { useDeliveryContext } from './DeliveryContext';
-
-const sortByStartTime = (
-  a: { startTime: string },
-  b: { startTime: string },
-): number => a.startTime.localeCompare(b.startTime);
-
-const filterForHomeDelivery = ({
-  homeDelivery,
-  time,
-}: {
-  homeDelivery: boolean;
-  time: TimeData;
-}): boolean => {
-  if (homeDelivery) {
-    return time.inHomeAvailable;
-  }
-  return true;
-};
 
 const Times: React.FC = () => {
   const {

@@ -5,10 +5,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import { getDeliveryDates } from '../../utils/api/matHemApi';
+import { sortByDate } from '../../utils/sortByDate';
 import H2 from '../../components/Headings/H2';
 import { useDeliveryContext } from './DeliveryContext';
-
-const sortByDate = (a: string, b: string): number => a.localeCompare(b);
 
 const Dates: React.FC = () => {
   const [datesData, setDatesData] = useState<string[]>([]);
