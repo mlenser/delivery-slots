@@ -1,8 +1,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import DateSelectorPage from '../containers/date-selector/DateSelectorPage';
+import DateSelectorPage from '../features/date-selector/DateSelectorPage';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
+import H1 from '../components/Headings/H1';
 
 type Props = {
   data: {
@@ -17,7 +18,8 @@ type Props = {
 const IndexPage: React.FC<Props> = ({ data }) => (
   <Layout>
     <SEO title={data.site.siteMetadata.title} />
-    <DateSelectorPage title={data.site.siteMetadata.title} />
+    <H1>{data.site.siteMetadata.title}</H1>
+    <DateSelectorPage />
   </Layout>
 );
 
