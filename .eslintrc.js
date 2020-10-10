@@ -50,6 +50,7 @@ module.exports = {
       ],
       rules: {
         '@typescript-eslint/ban-types': 0,
+        '@typescript-eslint/comma-dangle': 0,
         '@typescript-eslint/explicit-function-return-type': [
           'error',
           {
