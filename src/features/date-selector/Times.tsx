@@ -4,6 +4,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import { TIMES_API } from '../../constants/constants';
 import H2 from '../../components/Headings/H2';
 import { formatTime } from '../../utils/formatTime';
 import { TimeData } from '../../types/types';
@@ -40,9 +41,7 @@ const Times: React.FC = () => {
   useEffect(() => {
     if (selectedDate) {
       (async () => {
-        const response = await fetch(
-          `https://api.mathem.io/mh-test-assignment/delivery/times/${selectedDate}`,
-        );
+        const response = await fetch(`${TIMES_API}/${selectedDate}`);
         const data = await response.json();
         setTimesData(data);
       })();
