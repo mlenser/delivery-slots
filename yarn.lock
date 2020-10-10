@@ -2810,6 +2810,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/loadable__component@5.13.0":
+  version "5.13.0"
+  resolved "https://registry.yarnpkg.com/@types/loadable__component/-/loadable__component-5.13.0.tgz#fc99480e58fe808e6f94a55f93901858a2d5407f"
+  integrity sha512-t44mJuu2DR2oP6RGXHuznAsK3eQYzwTcX76enlcwu1Uz9634VyTYNDLCl0WwTcAfCoro3142li+KKGqOMTznbw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/lodash.sample@^4.2.6":
   version "4.2.6"
   resolved "https://registry.yarnpkg.com/@types/lodash.sample/-/lodash.sample-4.2.6.tgz#ec7f6a6dbd0401c4a1e5f5b3c85fa5a85a42a84a"

@@ -20,14 +20,12 @@ const ThemeProvider: React.FC = ({ children }) => {
   };
 
   const modifiedMuiTheme = createMuiTheme({
-    ...muiTheme,
     palette: {
       ...muiTheme.palette,
       primary: {
         ...theme.palette.primary,
       },
       text: {
-        ...muiTheme.palette.text,
         primary: 'rgba(0, 0, 0, 0.87)',
       },
       type: 'light',

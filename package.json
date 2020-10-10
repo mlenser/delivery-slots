@@ -16,6 +16,8 @@
     "clean": "gatsby clean",
     "lint": "prettier --write \"**/*.{html,json,md,yaml,yml}\" && eslint --quiet --fix . && stylelint --fix \"./**/*.{js,tsx}\"",
     "lint:ci": "prettier --check \"**/*.{html,json,md,yaml,yml}\" && eslint --quiet . && stylelint \"./**/*.{js,tsx}\"",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "tsc --watch --noEmit",
     "test": "jest"
   },
   "dependencies": {
@@ -52,6 +54,7 @@
     "@babel/node": "7.10.5",
     "@babel/preset-env": "7.11.5",
     "@types/jest": "26.0.14",
+    "@types/loadable__component": "5.13.0",
     "@types/react": "16.9.51",
     "@types/react-helmet": "6.1.0",
     "@types/styled-components": "5.1.3",
