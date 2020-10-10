@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import DateSelectorPage from '../features/date-selector/DateSelectorPage';
+import Index from '../views/DateSelectorPage';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import H1 from '../components/Headings/H1';
@@ -19,7 +19,7 @@ const IndexPage: React.FC<Props> = ({ data }) => (
   <Layout>
     <SEO title={data.site.siteMetadata.title} />
     <H1>{data.site.siteMetadata.title}</H1>
-    <DateSelectorPage />
+    <Index />
   </Layout>
 );
 

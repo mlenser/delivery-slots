@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
-import ConfirmationPage from '../features/ConfirmationPage';
+import ConfirmationPage from '../views/ConfirmationPage';
 import H1 from '../components/Headings/H1';
 
 const Confirmation: React.FC = () => (
